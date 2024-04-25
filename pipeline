@@ -28,7 +28,7 @@ spec:
     stage('itpassionforever - Analyze code IaC') {
       steps {
         container('checkov') {
-          sh 'checkov -d compliant --quiet --compact'
+          sh 'checkov -d vpc --quiet --compact'
         }
       }
     }
