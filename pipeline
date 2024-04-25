@@ -18,19 +18,20 @@ spec:
     }
   }
   stages {
-    stage('verify version') {
+    stage('itpassionforever - check version') {
       steps {
         container('checkov') {
           sh 'checkov --version'
         }
       }
     }
-    stage('check the help') {
+    stage('itpassionforever - Analyze code IaC') {
       steps {
         container('checkov') {
-          sh 'checkov --help'
+          sh 'checkov -d compliant --quiet --compact'
         }
       }
     }
   }
 }
+
