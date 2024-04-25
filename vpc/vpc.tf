@@ -8,6 +8,12 @@ resource "aws_vpc" "main" {
 }
 
 
+resource "aws_flow_log" "example" {
+  iam_role_arn    = "arn"
+  log_destination = "log"
+  traffic_type    = "ALL"
+  vpc_id          = aws_vpc.main.id
+}
 resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.main.id
 }
