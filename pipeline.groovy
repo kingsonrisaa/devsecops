@@ -1,0 +1,36 @@
+pipeline {
+  agent {
+    kubernetes {
+      yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  name: checkov
+  namespace: jenkins-itpassionforever
+spec:
+  containers:
+  - name: checkov
+    image: bridgecrew/checkov
+    command:
+    - cat
+    tty: true
+'''   
+    }
+  }
+  stages {
+    stage('verify version') {
+      steps {
+        container('checkov') {
+          sh 'checkov --version'
+        }
+      }
+    }
+    stage('check the help') {
+      steps {
+        container('checkov') {
+          sh 'checkov --help'
+        }
+      }
+    }
+  }
+}
